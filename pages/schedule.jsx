@@ -38,44 +38,44 @@ export default function Home() {
 
         <div className=" grid grid-cols-12 grid-rows-[24] w-full">
           <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">12</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">12</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">1</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">1</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">2</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">2</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">3</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">3</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">4</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">4</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">5</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">5</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">6</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">6</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">7</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">7</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">8</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">8</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">9</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">9</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">10</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">10</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
           <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold">11</div>
+          <div className="col-start-2 col-span-1 font-bold translate-x-2">11</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
         </div>
-        <div className=" w-7/12 h-[240px] bg-[#D9D9D9] opacity-80 absolute top-[257px] left-[22%] rounded-xl drop-shadow-lg"></div>
-        <div className=" w-7/12 h-[60px] bg-blue absolute top-[497px] left-[22%] rounded-xl drop-shadow-lg text-white text-xl font-bold text-center p-4">english homework</div>
+        <div className=" w-7/12 h-[240px] bg-[#D9D9D9] opacity-80 absolute top-[297px] left-[22%] rounded-xl drop-shadow-lg"></div>
+        <div className=" w-7/12 h-[60px] bg-blue absolute top-[537px] left-[22%] rounded-xl drop-shadow-lg text-white text-xl font-bold text-center p-4">english homework</div>
       </motion.div>
 
       <Footer

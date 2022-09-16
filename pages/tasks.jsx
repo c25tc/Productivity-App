@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Home() {
   const [tasks, setTasks] = useState([
     ["english reading", 60, 9, 11, 22],
-    ["math hw", 200, 9, 12, 22],
+    ["math hw", 200, 9, 12, 22], 
   ]);
   const [inputValue, setInputValue] = useState(["", 30, 0, 0, 0]);
 

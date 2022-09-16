@@ -19,3 +19,4 @@ const Header = ({ name, left, middle, right, leftLink, rightLink }) => {
 };
 
 export default Header
+
