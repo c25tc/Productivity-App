@@ -31,7 +31,7 @@ export default function Home() {
           leftLink={"projects"}
           rightLink={"schedule"}
         />
-        <MobileHeader name={"tasks"} color="blue" />
+        <MobileHeader name={"tasks"} color="blue" topLeftButton = {"+"}/>
 
         <Day day={"today"} />
         {tasks.map((task) => (

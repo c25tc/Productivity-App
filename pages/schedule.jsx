@@ -26,7 +26,7 @@ export default function Home() {
           leftLink={"tasks"}
           rightLink={"projects"}
         />
-        <MobileHeader name={"schedule"} color="pink" />
+        <MobileHeader name={"schedule"} color="pink" topLeftButton = {"edit"}/>
 
         <div className="grid grid-cols-12 text-center">
           <div className="col-start-2 col-span-3 translate-y-1">yesterday</div>
