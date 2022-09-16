@@ -13,7 +13,7 @@ const Header = ({ name, left, middle, right, leftLink, rightLink }) => {
         </div>
         <Link  href={`/${rightLink}`}><div className={`bg-${right} rounded-3xl m-2`}></div></Link>
       </header>
-      <div className="h-48 py-10"></div>
+      <div className="h-44 py-10"></div>
     </div>
   );
 };

@@ -74,8 +74,8 @@ export default function Home() {
           <div className="col-start-2 col-span-1 font-bold">11</div>
           <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
         </div>
-        <div className=" w-4/6 h-[240px] bg-[#D9D9D9] opacity-80 absolute top-[227px] left-[20%] rounded-xl drop-shadow-lg"></div>
-        <div className=" w-4/6 h-[60px] bg-blue absolute top-[497px] left-[20%] rounded-xl drop-shadow-lg text-white text-xl font-bold text-center p-4">english homework</div>
+        <div className=" w-7/12 h-[240px] bg-[#D9D9D9] opacity-80 absolute top-[257px] left-[22%] rounded-xl drop-shadow-lg"></div>
+        <div className=" w-7/12 h-[60px] bg-blue absolute top-[497px] left-[22%] rounded-xl drop-shadow-lg text-white text-xl font-bold text-center p-4">english homework</div>
       </motion.div>
 
       <Footer
