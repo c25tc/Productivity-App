@@ -4,16 +4,20 @@ import { motion } from 'framer-motion';
 const MobileHeader = ({name, color, topLeftButton}) => {
 
     var leftTextSize = "";
+    var paddingX = "";
     if(topLeftButton == "+"){
-      leftTextSize = "4xl"
+      leftTextSize = "2xl";
+      paddingX = "5";
+
     } else {
-      leftTextSize = "2xl"
+      leftTextSize = "2xl";
+      paddingX = "0";
     }
   
   return (
     <div className="md:hidden">
       <div className={`fixed px-3 py-2 bg-${color} z-20 text-white rounded-xl top-4 right-4 font-bold text-2xl`}>user</div>
-      <div className={`fixed px-3 py-2 bg-${color} z-20 text-white rounded-xl top-4 left-4 font-bold text-${leftTextSize}`}>{topLeftButton}</div>
+      <div className={`fixed px-3 py-2 bg-${color} z-20 text-white rounded-xl top-4 px-${paddingX} left-4 font-bold text-${leftTextSize}`}>{topLeftButton}</div>
         
       <div className="fixed z-10 w-full h-24 bg-white"></div>
       <header className="grid grid-cols-12 h-30 mb-10 pt-10 fixed top-10 w-full z-10 drop-shadow-xl">

@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,6 +8,20 @@ import MobileHeader from "../components/MobileHeader";
 import { motion } from "framer-motion";
 
 export default function Home() {
+
+  const [projects, setProjects] = useState([
+    {
+      name: "history doc id",
+      date: [9, 12, 22],
+      tasks: [1, 2],
+    },
+    {
+      name: "math test",
+      date: [9, 12, 22],
+      tasks: [4],
+    },
+  ]);
+
   return (
     <div>
       <Head>
@@ -24,12 +39,10 @@ export default function Home() {
           leftLink={"schedule"}
           rightLink={"tasks"}
         />
-        <MobileHeader name={"projects"} color="green" />
+        <MobileHeader name={"projects"} color="green" topLeftButton={"+"} />
 
-        <Project name={"history doc id"} />
-        <Project name={"math test"} />
-        <Project name={"english paper"} />
-        <NewProject />
+        {projects.map((project) => <Project name={project.name} />)}
+        <NewProject setProject={setProjects} projects={projects} />
       </motion.div>
 
       <Footer
