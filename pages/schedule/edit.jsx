@@ -27,16 +27,16 @@ export default function Home() {
     let top = 261 + blockOffTimes[i][0];
     blocks.push(
       <div
-        className={`w-9/12 bg-[#D9D9D9] opacity-80 absolute left-[13%] rounded-xl drop-shadow-lg`}
+        className={`w-9/12 bg-[#D9D9D9] opacity-80 absolute left-[13%] rounded-xl drop-shadow-lg cursor-grab`}
         style={{ height: blockOffTimes[i][1] + "px", top: top }}
         ref={blockRefs[i]}
       >
         <div
-          className="relative bg-pink top-0 w-4/6 h-4 left-1/2 -translate-x-1/2 rounded-b-xl"
+          className="relative bg-pink top-0 w-4/6 h-4 left-1/2 -translate-x-1/2 rounded-b-xl cursor-row-resize"
           ref={topRefs[i]}
         ></div>
         <div
-          className="absolute bottom-0 bg-pink w-4/6 h-4 left-1/2 -translate-x-1/2 rounded-t-xl"
+          className="absolute bottom-0 bg-pink w-4/6 h-4 left-1/2 -translate-x-1/2 rounded-t-xl cursor-row-resize"
           ref={bottomRefs[i]}
         ></div>
       </div>
@@ -62,21 +62,35 @@ export default function Home() {
           ></div>
         </div>
       );
-      forceUpdate()
+      forceUpdate();
     }
 
     blocks = [];
   }
 
   useEffect(() => {
-    function mousedown(e, i) {
+    function mousedown(e, i, resizer) {
+        console.log(resizer);
       let offset = e.pageY - blockOffTimes[i][0] - 261;
       window.addEventListener("mousemove", mousemove);
       window.addEventListener("mouseup", mouseup);
 
       function mousemove(e) {
         const currentBlocks = blockOffTimes;
-        currentBlocks[i][0] = Math.round((e.pageY - 261 - offset)/15) * 15;
+        if (resizer == "block") {
+          currentBlocks[i][0] = Math.round((e.pageY - 261 - offset) / 15) * 15;
+        } else if (resizer == "top") {
+          if (currentBlocks[i][1] >= 30) {
+            currentBlocks[i][1] -=
+              Math.round((e.pageY - 261 - offset) / 15) * 15 -
+              currentBlocks[i][0];
+          } else {
+            currentBlocks[i][1] = 30;
+          }
+          currentBlocks[i][0] = Math.round((e.pageY - 261 - offset) / 15) * 15;
+        } else if (resizer == "bottom") {
+          
+        }
         setblockOffTimes(currentBlocks);
         renderBlocks();
       }
@@ -85,16 +99,37 @@ export default function Home() {
         window.removeEventListener("mouseup", mouseup);
       }
     }
-    function touchstart(e, i) {
-        e.preventDefault();
+    function touchstart(e, i, resizer) {
+      e.preventDefault();
+      console.log(resizer)
       let offset = e.touches[0].pageY - blockOffTimes[i][0] - 261;
       window.addEventListener("touchmove", touchmove);
       window.addEventListener("touchend", touchend);
 
       function touchmove(e) {
-        e.preventDefault()
+        e.preventDefault();
         const currentBlocks = blockOffTimes;
-        currentBlocks[i][0] = Math.round((e.touches[0].pageY - 261 - offset)/15) * 15;
+        if (resizer == "block") {
+          currentBlocks[i][0] = Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15;
+        } else if (resizer == "top") {
+          if (currentBlocks[i][1] >= 30) {
+            currentBlocks[i][1] -=
+              Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15 -
+              currentBlocks[i][0];
+          } else {
+            currentBlocks[i][1] = 30;
+          }
+          currentBlocks[i][0] =
+            Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15;
+        } else if (resizer == "bottom") {
+            if (currentBlocks[i][1] >= 30) {
+              currentBlocks[i][1] +=
+                Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15 -
+                currentBlocks[i][0];
+            } else {
+              currentBlocks[i][1] = 30;
+            }
+        }
         setblockOffTimes(currentBlocks);
         renderBlocks();
       }
@@ -108,12 +143,23 @@ export default function Home() {
       const top = topRefs[i].current;
       const bottom = bottomRefs[i].current;
       renderBlocks();
-      console.log(block);
+      bottom.addEventListener("mousedown", (e) => {
+        mousedown(e, i, "bottom");
+      });
+      bottom.addEventListener("touchstart", (e) => {
+        touchstart(e, i, "bottom");
+      });
+      top.addEventListener("mousedown", (e) => {
+        mousedown(e, i, "top");
+      });
+      top.addEventListener("touchstart", (e) => {
+        touchstart(e, i, "top");
+      });
       block.addEventListener("mousedown", (e) => {
-        mousedown(e, i);
+        mousedown(e, i, "block");
       });
       block.addEventListener("touchstart", (e) => {
-        touchstart(e, i);
+        touchstart(e, i, "block");
       });
     }
     // return () => {
