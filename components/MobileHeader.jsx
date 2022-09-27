@@ -1,7 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-const MobileHeader = ({name, color, topLeftButton}) => {
+const MobileHeader = ({name, color, topLeftButton, leftButtonLink}) => {
 
     var leftTextSize = "";
     var paddingX = "";
@@ -17,8 +18,7 @@ const MobileHeader = ({name, color, topLeftButton}) => {
   return (
     <div className="md:hidden">
       <div className={`fixed px-3 py-2 bg-${color} z-20 text-white rounded-xl top-4 right-4 font-bold text-2xl`}>user</div>
-      <div className={`fixed px-3 py-2 bg-${color} z-20 text-white rounded-xl top-4 px-${paddingX} left-4 font-bold text-${leftTextSize}`}>{topLeftButton}</div>
-        
+      <Link href={leftButtonLink}><div className={`fixed px-3 py-2 bg-${color} z-20 text-white rounded-xl top-4 px-${paddingX} left-4 font-bold text-${leftTextSize}`}>{topLeftButton}</div></Link>
       <div className="fixed z-10 w-full h-24 bg-white"></div>
       <header className="grid grid-cols-12 h-30 mb-10 pt-10 fixed top-10 w-full z-10 drop-shadow-xl">
         <div

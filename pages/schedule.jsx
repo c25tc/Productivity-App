@@ -1,11 +1,28 @@
+import { useState } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MobileHeader from "../components/MobileHeader";
 import { motion } from "framer-motion";
-
+import Schedule from "../components/Schedule";
+import ScheduleEdit from "../components/ScheduleEdit";
 
 export default function Home() {
+  const [blockOffTimes, setblockOffTimes] = useState([
+    [1, 120],
+    [12, 60],
+    [20, 90],
+  ]);
+  let blocks = [];
+  for (let i = 0; i < blockOffTimes.length; i++) {
+    let top = 297 + blockOffTimes[i][0] * 60;
+    blocks.push(
+      <div
+        className={`w-7/12 bg-[#D9D9D9] opacity-80 absolute left-[22%] rounded-xl drop-shadow-lg`}
+        style={{ height: blockOffTimes[i][1] + "px", top: top }}
+      ></div>
+    );
+  }
   return (
     <div>
       <Head>
@@ -26,56 +43,30 @@ export default function Home() {
           leftLink={"tasks"}
           rightLink={"projects"}
         />
-        <MobileHeader name={"schedule"} color="pink" topLeftButton = {"edit"}/>
+        <MobileHeader
+          name={"schedule"}
+          color="pink"
+          topLeftButton={"edit"}
+          leftButtonLink="/schedule/edit"
+        />
 
         <div className="grid grid-cols-12 text-center">
           <div className="col-start-2 col-span-3 translate-y-1">yesterday</div>
-          <div className="font-bold text-3xl col-span-4 -translate-y-1">
+          <div
+            className="font-bold text-3xl col-span-4 -translate-y-1"
+            layoutId={"today"}
+          >
             today
           </div>
           <div className="col-span-3 translate-y-1">tommorow</div>
         </div>
 
-        <div className=" grid grid-cols-12 grid-rows-[24] w-full">
-          <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">12</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">1</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">2</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">3</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">4</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">5</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">6</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">7</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">8</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">9</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[15px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">10</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
-          <div className="bg-slate-300 h-[1px] my-[14px] col-start-2 col-span-10"></div>
-          <div className="col-start-2 col-span-1 font-bold translate-x-2">11</div>
-          <div className="bg-slate-300 h-[2px] my-[14px] col-start-3 col-span-9"></div>
+        <Schedule />
+        {blocks}
+        {/* <div className=" w-7/12 h-[240px] bg-[#D9D9D9] opacity-80 absolute top-[297px] left-[22%] rounded-xl drop-shadow-lg"></div> */}
+        <div className=" w-7/12 h-[60px] bg-blue absolute top-[537px] left-[22%] rounded-xl drop-shadow-lg text-white text-xl font-bold text-center p-4">
+          english homework
         </div>
-        <div className=" w-7/12 h-[240px] bg-[#D9D9D9] opacity-80 absolute top-[297px] left-[22%] rounded-xl drop-shadow-lg"></div>
-        <div className=" w-7/12 h-[60px] bg-blue absolute top-[537px] left-[22%] rounded-xl drop-shadow-lg text-white text-xl font-bold text-center p-4">english homework</div>
       </motion.div>
 
       <Footer
