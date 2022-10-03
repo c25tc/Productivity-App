@@ -19,6 +19,7 @@ export default function Home() {
   let blockRefs = [];
   let topRefs = [];
   let bottomRefs = [];
+  let bottomIsActive = false;
 
   for (let i = 0; i < blockOffTimes.length; i++) {
     blockRefs[i] = useRef(null);
@@ -89,7 +90,7 @@ export default function Home() {
           }
           currentBlocks[i][0] = Math.round((e.pageY - 261 - offset) / 15) * 15;
         } else if (resizer == "bottom") {
-          
+        //   currentBlocks[i][1] += currentBlocks[i][0] - e.pageY - 261 - offset;
         }
         setblockOffTimes(currentBlocks);
         renderBlocks();
@@ -97,21 +98,26 @@ export default function Home() {
       function mouseup() {
         window.removeEventListener("mousemove", mousemove);
         window.removeEventListener("mouseup", mouseup);
+        bottomIsActive = false;
       }
     }
     function touchstart(e, i, resizer) {
       e.preventDefault();
       console.log(resizer)
+      let startY = e.touches[0].pageY;
+      let moveY = 0;
+      let tick = 0;
       let offset = e.touches[0].pageY - blockOffTimes[i][0] - 261;
+      let oldCurrentBlocks = blockOffTimes;
       window.addEventListener("touchmove", touchmove);
       window.addEventListener("touchend", touchend);
 
       function touchmove(e) {
+        moveY = (startY - e.touches[0].pageY) / 2;
+        tick += 1;
         e.preventDefault();
         const currentBlocks = blockOffTimes;
-        if (resizer == "block") {
-          currentBlocks[i][0] = Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15;
-        } else if (resizer == "top") {
+        if (resizer == "top") {
           if (currentBlocks[i][1] >= 30) {
             currentBlocks[i][1] -=
               Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15 -
@@ -123,19 +129,30 @@ export default function Home() {
             Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15;
         } else if (resizer == "bottom") {
             if (currentBlocks[i][1] >= 30) {
+              // currentBlocks[i][1] -= Math.round(moveY / 15) * 15;
               currentBlocks[i][1] +=
                 Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15 -
-                currentBlocks[i][0];
+                (currentBlocks[i][0] + currentBlocks[i][1]);
             } else {
               currentBlocks[i][1] = 30;
             }
-        }
+        } else if (resizer == "block") {
+          currentBlocks[i][0] =
+            Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15;
+        } 
         setblockOffTimes(currentBlocks);
         renderBlocks();
+        // if (tick > 1) {
+        //    startY = e.touches[0].pageY; 
+        //    tick = 0;
+        // }
+        startY = e.touches[0].pageY; 
+        
       }
       function touchend() {
         window.removeEventListener("touchmove", touchmove);
         window.removeEventListener("touchend", touchend);
+        bottomIsActive = false;
       }
     }
     for (let i = 0; i < blockOffTimes.length; i++) {
@@ -145,9 +162,11 @@ export default function Home() {
       renderBlocks();
       bottom.addEventListener("mousedown", (e) => {
         mousedown(e, i, "bottom");
+        bottomIsActive = true;
       });
       bottom.addEventListener("touchstart", (e) => {
         touchstart(e, i, "bottom");
+        bottomIsActive = true;
       });
       top.addEventListener("mousedown", (e) => {
         mousedown(e, i, "top");
@@ -156,10 +175,10 @@ export default function Home() {
         touchstart(e, i, "top");
       });
       block.addEventListener("mousedown", (e) => {
-        mousedown(e, i, "block");
+        if (!bottomIsActive) mousedown(e, i, "block");
       });
       block.addEventListener("touchstart", (e) => {
-        touchstart(e, i, "block");
+        if (!bottomIsActive) touchstart(e, i, "block");
       });
     }
     // return () => {

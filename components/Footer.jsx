@@ -5,12 +5,12 @@ import { motion, AnimateSharedLayout } from 'framer-motion';
 const Footer = ({left, middle, right}) => {
   return (
     <>
-      <motion.div className="h-48 py-10"></motion.div>
+      <motion.div className=" h-36 py-2"></motion.div>
       <motion.footer
-        className="fixed w-full bottom-0 bg-white bg-opacity-70 backdrop-blur-lg pt-3 md:hidden"
+        className="fixed w-full bottom-0 bg-white bg-opacity-70 backdrop-blur-lg pt-0 md:hidden"
       >
         <motion.div
-          className="grid grid-cols-7 grid-rows-7 h-16 gap-4 m-10 mt-0"
+          className="grid grid-cols-7 grid-rows-7 h-12 gap-4 m-12 mt-0"
         >
           <Link href="/schedule">
             <motion.div
