@@ -37,11 +37,11 @@ export default function Home() {
       >
         <Header
           name={"schedule"}
-          left={"blue"}
+          left={"green"}
           middle={"pink"}
-          right={"green"}
-          leftLink={"tasks"}
-          rightLink={"projects"}
+          right={"blue"}
+          leftLink={"projects"}
+          rightLink={"tasks"}
         />
         <MobileHeader
           name={"schedule"}

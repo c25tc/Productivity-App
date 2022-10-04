@@ -1,14 +1,115 @@
-import { motion } from 'framer-motion';
-import React from 'react'
+import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Task = ({name}) => {
+const Task = ({ name }) => {
+  const [settingsClass, setSettingsClass] = useState(
+    "bg-green text-white font-bold rounded-xl transition-all duration-75 w-0"
+  );
+  const [open, setOpen] = useState(false);
+  const [showOpen, setShowOpen] = useState(false);
+
+  const taskRef = useRef(null);
+
+  useEffect(() => {
+    function mousedown(e) {
+      let startX = e.pageX;
+      window.addEventListener("mousemove", mousemove);
+      window.addEventListener("mouseup", mouseup);
+      function mousemove(e) {
+        if (e.pageX - startX < -20) setOpen(true);
+        if (e.pageX - startX > 20) setOpen(false);
+      }
+      function mouseup(e) {
+        window.removeEventListener("mousemove", mousemove);
+        window.removeEventListener("mouseup", mouseup);
+      }
+    }
+    function touchstart(e) {
+      let startX = e.touches[0].pageX;
+      taskRef.current.addEventListener("touchmove", touchmove);
+      taskRef.current.addEventListener("touchend", touchend);
+      function touchmove(e) {
+        e.preventDefault();
+        if (e.touches[0].pageX - startX < -20) setOpen(true);
+        if (e.touches[0].pageX - startX > 20) setOpen(false);
+      }
+      function touchend(e) {
+        window.removeEventListener("touchmove", touchmove);
+        window.removeEventListener("touchend", touchend);
+      }
+    }
+
+    taskRef.current.addEventListener("mousedown", mousedown);
+    taskRef.current.addEventListener("touchstart", touchstart);
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      setSettingsClass(
+        "transition-all text-white font-bold rounded-xl transition-all duration-500 w-full px-4 ml-2 flex"
+      );
+      setTimeout(() => {
+        setShowOpen(true);
+        setOpen(true);
+      }, 200);
+    } else {
+      setSettingsClass(
+        "transition-all text-white font-bold rounded-xl transition-all duration-500 w-0"
+      );
+      setShowOpen(false);
+    }
+  }, [open]);
+
   return (
-    <div className="mx-10 flex my-1">
-      <div className="bg-blue p-2 px-4 text-white font-bold rounded-xl flex-1">
-        {name}
+    <div
+      className="mx-10 flex my-1 select-none cursor-pointer md:mx-32"
+      ref={taskRef}
+    >
+      <div className="bg-blue p-2 px-4 text-white font-bold rounded-xl flex-1 transition-all overflow-y-hidden overflow-x-clip whitespace-nowrap">
+        {!open ? (
+          name
+        ) : (
+          <div
+            className="text-white -translate-x-[6px]"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            ✓
+          </div>
+        )}
+      </div>
+      <div className={settingsClass}>
+        {showOpen ? (
+          <div className="flex justify-between w-full">
+            <div className="bg-blue w-4/12 text-center p-0 rounded-xl block">
+              <div className=" text-xs font-light m-0 p-0 leading-5">
+                est. time
+              </div>
+              <div className="text-md font-bold m-0 p-0 leading-3">2 hrs</div>
+            </div>
+            <div className="bg-blue w-4/12 text-center p-0 rounded-xl block">
+              <div className="text-xs font-light m-0 p-0 leading-5">date</div>
+              <div className=" text-md font-bold m-0 p-0 leading-3">
+                <input
+                  type="date"
+                  className="bg-transparent pl-1 text-white text-xs font-bold focus:outline-none hide-calandar -translate-y-1"
+                />
+              </div>
+            </div>
+            <div className="bg-blue w-3/12 text-center p-0 rounded-xl">
+              {/* <div className="p-2"><FontAwesomeIcon icon={faTrash}/></div> */}
+              <div className="p-2">🗑</div>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
-}
+};
 
-export default Task
+export default Task;

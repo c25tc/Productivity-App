@@ -13,7 +13,7 @@ const Schedule = () => {
             layoutId={`schedule-30-${i}`}
           ></div>
           <div
-            className="col-start-2 col-span-1 font-bold translate-x-2"
+            className="col-start-2 col-span-1 font-bold translate-x-2 select-none"
             layoutId={`schedule-number-${i}`}
           >
             {num}

@@ -3,7 +3,7 @@ import React from 'react'
 const Day = ({day}) => {
   return (
     <div
-      className="mx-10 font-bold text-xl mb-5"
+      className="mx-10 font-bold text-xl mb-5 md:mx-32"
     >
       {day}
     </div>

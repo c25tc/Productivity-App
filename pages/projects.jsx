@@ -37,11 +37,11 @@ export default function Home() {
         <Header
           className="sm:hidden"
           name={"projects"}
-          left={"pink"}
+          left={"blue"}
           middle={"green"}
-          right={"blue"}
-          leftLink={"schedule"}
-          rightLink={"tasks"}
+          right={"pink"}
+          leftLink={"tasks"}
+          rightLink={"schedule"}
         />
         <MobileHeader name={"projects"} color="green" topLeftButton={"+"} leftButtonLink="" />
 

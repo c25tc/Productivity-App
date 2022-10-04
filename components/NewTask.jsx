@@ -17,7 +17,7 @@ const NewTask = ({ setTask, tasks, day }) => {
   };
 
   return (
-    <div className="mx-10 mt-1 mb-5">
+    <div className="mx-10 mt-1 mb-5 md:mx-32">
       <form onSubmit={addTask} className="w-full flex">
         <input
           type="text"
@@ -26,7 +26,6 @@ const NewTask = ({ setTask, tasks, day }) => {
           value={inputValue}
           onChange={(event) => setInputValue(event.target.value)}
         />
-
       </form>
     </div>
   );

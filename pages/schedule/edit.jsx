@@ -90,7 +90,9 @@ export default function Home() {
           }
           currentBlocks[i][0] = Math.round((e.pageY - 261 - offset) / 15) * 15;
         } else if (resizer == "bottom") {
-        //   currentBlocks[i][1] += currentBlocks[i][0] - e.pageY - 261 - offset;
+          currentBlocks[i][1] =
+            Math.round((e.pageY - 261) / 15) * 15 -
+            currentBlocks[i][0];
         }
         setblockOffTimes(currentBlocks);
         renderBlocks();
@@ -103,7 +105,7 @@ export default function Home() {
     }
     function touchstart(e, i, resizer) {
       e.preventDefault();
-      console.log(resizer)
+      console.log("hello")
       let startY = e.touches[0].pageY;
       let moveY = 0;
       let tick = 0;
@@ -129,10 +131,8 @@ export default function Home() {
             Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15;
         } else if (resizer == "bottom") {
             if (currentBlocks[i][1] >= 30) {
-              // currentBlocks[i][1] -= Math.round(moveY / 15) * 15;
-              currentBlocks[i][1] +=
-                Math.round((e.touches[0].pageY - 261 - offset) / 15) * 15 -
-                (currentBlocks[i][0] + currentBlocks[i][1]);
+              currentBlocks[i][1] = 
+                Math.round((e.touches[0].pageY - 261) / 15) * 15 - (currentBlocks[i][0])
             } else {
               currentBlocks[i][1] = 30;
             }
