@@ -95,7 +95,7 @@ const Task = ({ name }) => {
               <div className=" text-md font-bold m-0 p-0 leading-3">
                 <input
                   type="date"
-                  className="bg-transparent pl-1 text-white text-xs font-bold focus:outline-none hide-calandar -translate-y-1"
+                  className="bg-blue pl-1 text-white text-[8px] md:text-xs font-bold focus:outline-none hide-calandar -translate-y-1"
                 />
               </div>
             </div>
