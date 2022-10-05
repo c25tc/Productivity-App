@@ -12,7 +12,7 @@ export default function Home() {
   const [tasks, setTasks] = useState([
     {
       name: "read and annotate the source for english until complete but annotate only for how",
-      time: 60,
+      time: 75,
       date: [9, 12, 22],
       key: [1],
     },
@@ -36,17 +36,24 @@ export default function Home() {
     },
     {
       name: "math homework",
-      time: 60,
+      time: 45,
       date: [9, 14, 22],
       key: [5],
     },
     {
       name: "mandarin recording",
-      time: 120,
+      time: 135,
       date: [9, 15, 22],
       key: [6],
     },
   ]);
+
+  useEffect(() => {
+    console.log(tasks)
+    console.log("yesss")
+
+  }, [tasks])
+  
 
   return (
     <div>
@@ -74,25 +81,57 @@ export default function Home() {
         <Day day={"today"} />
         {tasks.map(
           (task) =>
-            task.date[1] == 12 && <Task name={task.name} key={task.key} />
+            task.date[1] == 12 && (
+              <Task
+                name={task.name}
+                key={task.key}
+                num={tasks.indexOf(task)}
+                tasks={tasks}
+                setTasks={setTasks}
+              />
+            )
         )}
         <NewTask setTask={setTasks} tasks={tasks} day={[9, 12, 22]} />
         <Day day={"tommorow"} />
         {tasks.map(
           (task) =>
-            task.date[1] == 13 && <Task name={task.name} key={task.key} />
+            task.date[1] == 13 && (
+              <Task
+                name={task.name}
+                key={task.key}
+                num={tasks.indexOf(task)}
+                tasks={tasks}
+                setTasks={setTasks}
+              />
+            )
         )}
         <NewTask setTask={setTasks} tasks={tasks} day={[9, 13, 22]} />
         <Day day={"9/14"} />
         {tasks.map(
           (task) =>
-            task.date[1] == 14 && <Task name={task.name} key={task.key} />
+            task.date[1] == 14 && (
+              <Task
+                name={task.name}
+                key={task.key}
+                num={tasks.indexOf(task)}
+                tasks={tasks}
+                setTasks={setTasks}
+              />
+            )
         )}
         <NewTask setTask={setTasks} tasks={tasks} day={[9, 14, 22]} />
         <Day day={"9/15"} />
         {tasks.map(
           (task) =>
-            task.date[1] == 15 && <Task name={task.name} key={task.key} />
+            task.date[1] == 15 && (
+              <Task
+                name={task.name}
+                key={task.key}
+                num={tasks.indexOf(task)}
+                tasks={tasks}
+                setTasks={setTasks}
+              />
+            )
         )}
         <NewTask setTask={setTasks} tasks={tasks} day={[9, 15, 22]} />
       </motion.div>

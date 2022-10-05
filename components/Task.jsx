@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import TimeSelect from "./TimeSelect";
 
-const Task = ({ name }) => {
+const Task = ({ name, tasks, setTasks, num }) => {
   const [settingsClass, setSettingsClass] = useState(
     "bg-green text-white font-bold rounded-xl transition-all duration-75 w-0"
   );
@@ -88,14 +89,22 @@ const Task = ({ name }) => {
               <div className=" text-xs font-light m-0 p-0 leading-5">
                 est. time
               </div>
-              <div className="text-md font-bold m-0 p-0 leading-3">2 hrs</div>
+              <div className="text-md font-bold m-0 p-0 leading-3">
+                <TimeSelect tasks={tasks} setTasks={setTasks} num={num} />
+              </div>
             </div>
             <div className="bg-blue w-4/12 text-center p-0 rounded-xl block">
               <div className="text-xs font-light m-0 p-0 leading-5">date</div>
               <div className=" text-md font-bold m-0 p-0 leading-3">
                 <input
                   type="date"
-                  className="bg-blue pl-1 text-white text-[8px] md:text-xs font-bold focus:outline-none hide-calandar -translate-y-1"
+                  className="bg-blue pl-1 text-white text-[8px] md:text-xs font-bold focus:outline-none hide-calandar -translate-y-1 md:translate-x-2"
+                  value={`20${tasks[num].date[2]}-${
+                    tasks[num].date[0].toString().length == 2
+                      ? tasks[num].date[0]
+                      : "0" + tasks[num].date[0]
+                  }-${tasks[num].date[1]}`}
+                  onChange={() => {console.log("hello")}}
                 />
               </div>
             </div>
