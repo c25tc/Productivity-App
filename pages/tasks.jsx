@@ -13,37 +13,37 @@ export default function Home() {
     {
       name: "read and annotate the source for english until complete but annotate only for how",
       time: 75,
-      date: [9, 12, 22],
+      date: [9, 12, 2022],
       key: [1],
     },
     {
       name: "write context draft",
       time: 120,
-      date: [9, 13, 22],
+      date: [9, 13, 2022],
       key: [2],
     },
     {
       name: "english reading",
       time: 60,
-      date: [9, 14, 22],
+      date: [9, 14, 2022],
       key: [3],
     },
     {
       name: "got over 2.3",
       time: 120,
-      date: [9, 14, 22],
+      date: [9, 14, 2022],
       key: [4],
     },
     {
       name: "math homework",
       time: 45,
-      date: [9, 14, 22],
+      date: [9, 14, 2022],
       key: [5],
     },
     {
       name: "mandarin recording",
       time: 135,
-      date: [9, 15, 22],
+      date: [9, 15, 2022],
       key: [6],
     },
   ]);

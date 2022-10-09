@@ -10,23 +10,79 @@ const Task = ({ name, tasks, setTasks, num }) => {
   );
   const [open, setOpen] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
+  const [date, setDate] = useState(
+    tasks[num].date[2] + "-" + tasks[num].date[0] + "-" + tasks[num].date[1]
+  );
+  //2022-10-12
 
   const taskRef = useRef(null);
 
+  function changedDate(e) {
+    console.log(e.target.value);
+    const changedDate = e.target.value.split("-");
+    console.log([
+      parseInt(changedDate[0]),
+      parseInt(changedDate[1]),
+      parseInt(changedDate[2]),
+    ]);
+    setDate(e.target.value);
+    const newTasks = tasks;
+    newTasks[num].date = [
+      parseInt(changedDate[1]),
+      parseInt(changedDate[2]),
+      parseInt(changedDate[0]),
+    ];
+    setTasks(newTasks);
+    console.log(tasks)
+  }
+
   useEffect(() => {
-    function mousedown(e) {
-      let startX = e.pageX;
-      window.addEventListener("mousemove", mousemove);
-      window.addEventListener("mouseup", mouseup);
-      function mousemove(e) {
-        if (e.pageX - startX < -20) setOpen(true);
-        if (e.pageX - startX > 20) setOpen(false);
-      }
-      function mouseup(e) {
-        window.removeEventListener("mousemove", mousemove);
-        window.removeEventListener("mouseup", mouseup);
-      }
+    if (tasks[num].date[0].toString().length == 1) {
+      console.log("just month")
+      setDate(
+        tasks[num].date[2] +
+          "-0" +
+          tasks[num].date[0] +
+          "-" +
+          tasks[num].date[1]
+      );
     }
+    if (tasks[num].date[1].toString().length == 1) {
+      console.log("just day")
+      setDate(
+        tasks[num].date[2] +
+          "-" +
+          tasks[num].date[0] +
+          "-0" +
+          tasks[num].date[1]
+      );
+    } 
+    if (
+      tasks[num].date[0].toString().length == 1 &&
+      tasks[num].date[1].toString().length == 1
+    ) {
+      console.log("both")
+      setDate(
+        tasks[num].date[2] +
+          "-0" +
+          tasks[num].date[0] +
+          "-0" +
+          tasks[num].date[1]
+      );
+    }
+      function mousedown(e) {
+        let startX = e.pageX;
+        window.addEventListener("mousemove", mousemove);
+        window.addEventListener("mouseup", mouseup);
+        function mousemove(e) {
+          if (e.pageX - startX < -20) setOpen(true);
+          if (e.pageX - startX > 20) setOpen(false);
+        }
+        function mouseup(e) {
+          window.removeEventListener("mousemove", mousemove);
+          window.removeEventListener("mouseup", mouseup);
+        }
+      }
     function touchstart(e) {
       let startX = e.touches[0].pageX;
       taskRef.current.addEventListener("touchmove", touchmove);
@@ -96,15 +152,12 @@ const Task = ({ name, tasks, setTasks, num }) => {
             <div className="bg-blue w-4/12 text-center p-0 rounded-xl block">
               <div className="text-xs font-light m-0 p-0 leading-5">date</div>
               <div className=" text-md font-bold m-0 p-0 leading-3">
+                {console.log(date)}
                 <input
                   type="date"
-                  className="bg-blue pl-1 text-white text-[8px] md:text-xs font-bold focus:outline-none hide-calandar -translate-y-1 md:translate-x-2"
-                  value={`20${tasks[num].date[2]}-${
-                    tasks[num].date[0].toString().length == 2
-                      ? tasks[num].date[0]
-                      : "0" + tasks[num].date[0]
-                  }-${tasks[num].date[1]}`}
-                  onChange={() => {console.log("hello")}}
+                  className="bg-blue pl-1 text-white text-[8px] md:text-xs font-bold focus:outline-none sm:only:hide-calandar -translate-y-1 md:translate-x-2"
+                  value={date}
+                  onChange={changedDate}
                 />
               </div>
             </div>

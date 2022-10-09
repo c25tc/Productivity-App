@@ -5,8 +5,10 @@ const TimeSelect = ({ tasks, setTasks, num }) => {
   let hours, minutes;
 
   function changedHour(e) {
-    hours = parseInt(e.target.value);
+    console.log(e.target.value)
+    hours = e.target.value;
     minutes = time[1];
+    console.log(hours, minutes)
     setTime([hours, minutes]);
     const newTasks = tasks;
     newTasks[num].time = time[0] * 60 + time[1];

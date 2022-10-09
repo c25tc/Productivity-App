@@ -8,19 +8,80 @@ import Schedule from "../components/Schedule";
 import ScheduleEdit from "../components/ScheduleEdit";
 
 export default function Home() {
-  const [blockOffTimes, setblockOffTimes] = useState([
-    [1, 120],
-    [12, 60],
-    [20, 90],
+  const date = new Date();
+  // const date1 = new Date("July 31, 1983 01:15:00");
+  const [day, setDay] = useState([
+    date.getMonth() + 1,
+    date.getDate(),
+    date.getFullYear(),
   ]);
+  const dateTracker = new Date();
+  dateTracker.setDate(dateTracker.getDate() - 1);
+  const yesterday = [
+    dateTracker.getMonth() + 1,
+    dateTracker.getDate(),
+    dateTracker.getFullYear(),
+  ];
+  dateTracker.setDate(dateTracker.getDate() + 1);
+  const today = [
+    dateTracker.getMonth() + 1,
+    dateTracker.getDate(),
+    dateTracker.getFullYear(),
+  ];
+  dateTracker.setDate(dateTracker.getDate() + 1);
+  const tommorow = [
+    dateTracker.getMonth() + 1,
+    dateTracker.getDate(),
+    dateTracker.getFullYear(),
+  ];
+  const [blockOffTimes, setblockOffTimes] = useState([
+    [
+      [0, 120],
+      [720, 60],
+      [1200, 90],
+    ],
+    [
+      [180, 120],
+      [750, 60],
+      [1230, 90],
+    ],
+    [
+      [150, 120],
+      [780, 60],
+      [1260, 90],
+    ],
+    [
+      [120, 120],
+      [720, 60],
+      [1170, 90],
+    ],
+    [
+      [90, 120],
+      [720, 60],
+      [1140, 90],
+    ],
+    [
+      [60, 120],
+      [720, 60],
+      [1290, 30],
+    ],
+    [
+      [30, 120],
+      [810, 60],
+      [1350, 30],
+    ],
+  ]);
+
   let blocks = [];
-  for (let i = 0; i < blockOffTimes.length; i++) {
-    let top = 297 + blockOffTimes[i][0] * 60;
+  for (let i = 0; i < blockOffTimes[date.getDay()].length; i++) {
+    let top = 297 + blockOffTimes[date.getDay()][i][0];
     blocks.push(
-      <div
+      <motion.div
         className={`w-7/12 bg-[#D9D9D9] opacity-80 absolute left-[22%] rounded-xl drop-shadow-lg`}
-        style={{ height: blockOffTimes[i][1] + "px", top: top }}
-      ></div>
+        style={{ height: blockOffTimes[date.getDay()][i][1] + "px", top: top }}
+        key={i}
+        layoutId={`block-off-times-${i}`}
+      ></motion.div>
     );
   }
   return (
