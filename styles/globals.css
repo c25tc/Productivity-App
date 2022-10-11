@@ -3,5 +3,11 @@
 @tailwind utilities;
 
 .hide-calandar::-webkit-calendar-picker-indicator {
-  display: none;
+  display: block;
+}
+
+@media (max-width: 500px) {
+  .hide-calandar::-webkit-calendar-picker-indicator {
+    display: none;
+  }
 }

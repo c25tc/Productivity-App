@@ -1,7 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 
 const TimeSelect = ({ tasks, setTasks, num }) => {
-  const [time, setTime] = useState([0, 0]);
+  const [time, setTime] = useState([
+    Math.floor(tasks[num].time / 60),
+    tasks[num].time % 60,
+  ]);
   let hours, minutes;
 
   function changedHour(e) {
@@ -10,23 +13,20 @@ const TimeSelect = ({ tasks, setTasks, num }) => {
     minutes = time[1];
     console.log(hours, minutes)
     setTime([hours, minutes]);
-    const newTasks = tasks;
-    newTasks[num].time = time[0] * 60 + time[1];
-    setTasks(newTasks);
   }
   function changedMinute(e) {
     minutes = parseInt(e.target.value);
     hours = time[0];
     setTime([hours, minutes]);
+  }
+
+  useEffect(() => {
     const newTasks = tasks;
     newTasks[num].time = time[0] * 60 + time[1];
     setTasks(newTasks);
-  }
-  useEffect(() => {
-    const splitTime = Math.floor(tasks[num].time / 60);
-    const remainder = tasks[num].time % 60;
-    setTime([splitTime, remainder])
-  }, []);
+  
+  }, [time])
+  
 
   return (
     <div className="flex justify-center">

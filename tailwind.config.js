@@ -10,6 +10,7 @@ module.exports = {
         blue: "#BAD6EA",
         pink: "#EABABA",
         green: "#BAEAE7",
+        orange: "#F1D2C5",
       },
     },
   },

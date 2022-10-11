@@ -8,6 +8,7 @@ const Task = ({ name, tasks, setTasks, num }) => {
   const [settingsClass, setSettingsClass] = useState(
     "bg-green text-white font-bold rounded-xl transition-all duration-75 w-0"
   );
+  const [taskName, setTaskName] = useState(name);
   const [open, setOpen] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
   const [date, setDate] = useState(
@@ -16,6 +17,14 @@ const Task = ({ name, tasks, setTasks, num }) => {
   //2022-10-12
 
   const taskRef = useRef(null);
+
+  useEffect(() => {
+    const newTasks = tasks;
+    newTasks[num].name - taskName;
+    setTasks(newTasks)
+  
+  }, [taskName])
+  
 
   function changedDate(e) {
     console.log(e.target.value);
@@ -126,7 +135,14 @@ const Task = ({ name, tasks, setTasks, num }) => {
     >
       <div className="bg-blue p-2 px-4 text-white font-bold rounded-xl flex-1 transition-all overflow-y-hidden overflow-x-clip whitespace-nowrap">
         {!open ? (
-          name
+          <form onSubmit={(event) => {event.preventDefault()}}>
+            <input
+              type="text"
+              value={taskName}
+              className="bg-blue w-full text-white font-bold rounded-xl flex-1 focus:outline-none"
+              onChange={(event) => setTaskName(event.target.value)}
+            />
+          </form>
         ) : (
           <div
             className="text-white -translate-x-[6px]"
@@ -152,10 +168,9 @@ const Task = ({ name, tasks, setTasks, num }) => {
             <div className="bg-blue w-4/12 text-center p-0 rounded-xl block">
               <div className="text-xs font-light m-0 p-0 leading-5">date</div>
               <div className=" text-md font-bold m-0 p-0 leading-3">
-                {console.log(date)}
                 <input
                   type="date"
-                  className="bg-blue pl-1 text-white text-[8px] md:text-xs font-bold focus:outline-none sm:only:hide-calandar -translate-y-1 md:translate-x-2"
+                  className="bg-blue pl-1 text-white text-[8px] md:text-xs font-bold focus:outline-none hide-calandar -translate-y-1 md:translate-x-2"
                   value={date}
                   onChange={changedDate}
                 />
